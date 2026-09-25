@@ -1,0 +1,37 @@
+<odoo>
+    <record model="ir.ui.view" id="hair_appointment_form">
+        <field name="name">hair.appointment.form</field>
+        <field name="model">hair.appointment</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="id_res_partner"/>
+                        <field name="id_calendar_event"/>
+                        <field name="id_resourcer_booking"/>
+                        <field name="id_sale_order"/>
+                        <field name="id_hr_employee"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="hair_appointment_list">
+        <field name="name">hair.appointment.list</field>
+        <field name="model">hair.appointment</field>
+        <field name="arch" type="xml">
+            <list string="Citas de Peluquería" default_order="id desc">
+                <field name="name"/>
+                <field name="id_res_partner"/>
+                <field name="id_hr_employee"/>
+                <field name="id_sale_order" optional="show"/>
+                <field name="id_resourcer_booking" optional="hide"/>
+                <field name="id_calendar_event" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+
+</odoo>

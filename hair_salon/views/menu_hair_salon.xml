@@ -1,0 +1,33 @@
+<odoo>
+    <record id="action_hair_appointment" model="ir.actions.act_window">
+        <field name="name">Hair Appointment</field>
+        <field name="res_model">hair.appointment</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                ¡Book your first hair appointment.!
+            </p>
+        </field>
+    </record>
+
+<!--    menu raiz del modulo hair_salon-->
+    <menuitem
+            id="menu_hair_salon_root"
+            name="Hair Salon"
+            web_icon="hair_salon,static/description/icon5.png"
+            sequence="10"
+    />
+
+    <!-- menu de gestion de citas -->
+    <menuitem id="menu_hair_salon_appointments_category"
+              name="Appointment Management"
+              parent="menu_hair_salon_root"
+              sequence="10"/>
+
+    <!-- menu de citas -->
+    <menuitem id="menu_hair_appointment_list"
+              name="Appointments"
+              parent="menu_hair_salon_appointments_category"
+              action="action_hair_appointment"
+              sequence="10"/>
+</odoo>

@@ -13,7 +13,7 @@
 
 
     'category': 'Services',
-    'version': '18.0.0.2',
+    'version': '18.0.0.3',
 
     # any module necessary for this one to work correctly
     'depends': ['base','calendar','resource_booking','sale','sale_management','hr'],
@@ -21,9 +21,8 @@
     # always loaded
     'data': [
         'security/ir.model.access.csv',
-        'views/views.xml',
-        'views/templates.xml',
         'views/hair_appointment_view.xml',
+        # 'views/hair_employee.xml',
         'views/menu_hair_salon.xml',
     ],
     # only loaded in demonstration mode

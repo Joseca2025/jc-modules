@@ -1,0 +1,56 @@
+<odoo>
+    <record model="ir.ui.view" id="hair_appointment_form">
+        <field name="name">hair.appointment.form</field>
+        <field name="model">hair.appointment</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="booking_id" string="Reserva"/>
+                            <field name="partner_id" string="Cliente"/>
+                            <field name="resource_ids" widget="many2many_tags" string="Recursos / Estilistas"/>
+                            <field name="calendar_event_id" string="Evento de calendario"/>
+                        </group>
+                        <group>
+                            <field name="calendar_event_name" string="Nombre del evento"/>
+                            <field name="calendar_event_organizer" string="Organizador"/>
+                            <field name="state_booking" string="Estado de la Cita"/>
+                        </group>
+                    </group>
+                    <group string="Detalles del evento">
+                        <group>
+                            <field name="calendar_event_date_start" string="Fecha y hora de inicio"/>
+                            <field name="calendar_event_date_end" string="Fecha y hora de fin"/>
+                        </group>
+                        <group>
+                            <field name="calendar_event_duration" string="Duración"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="calendar_event_description" string="Descripción"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="hair_appointment_list">
+        <field name="name">hair.appointment.list</field>
+        <field name="model">hair.appointment</field>
+        <field name="arch" type="xml">
+            <list string="Citas de Peluquería" default_order="id desc">
+                <field name="partner_id" string="Cliente"/>
+                <field name="resource_ids" string="Recursos / Estilistas" widget="many2many_tags" optional="hide"/>
+                <field name="calendar_event_name" string="Evento"/>
+                <field name="calendar_event_date_start" string="Fecha y hora de inicio"/>
+                <field name="calendar_event_date_end" string="Fecha y hora de fin" optional="hide"/>
+                <field name="calendar_event_duration" string="Duración" optional="hide"/>
+                <field name="calendar_event_organizer" string="Organizador" optional="hide"/>
+                <field name="state_booking" string="Estado de la Cita" optional="hide"/>
+            </list>
+        </field>
+    </record>
+
+
+</odoo>

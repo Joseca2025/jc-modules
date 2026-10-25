@@ -22,8 +22,9 @@
     'data': [
         'security/ir.model.access.csv',
         'views/hair_appointment_view.xml',
-        # 'views/hair_employee.xml',
         'views/menu_hair_salon.xml',
+        'views/resource_booking.xml',
+        'views/calendar_event.xml',
     ],
     # only loaded in demonstration mode
     'demo': [

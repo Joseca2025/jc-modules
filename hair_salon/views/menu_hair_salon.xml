@@ -30,4 +30,10 @@
               parent="menu_hair_salon_appointments_category"
               action="action_hair_appointment"
               sequence="10"/>
+
+<!--    <menuitem id="menu_hair_salon_employees"-->
+<!--              name="Staff"-->
+<!--              parent="menu_hair_salon_root"-->
+<!--              action="action_hair_salon_employees"-->
+<!--              sequence="20"/>-->
 </odoo>

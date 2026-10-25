@@ -13,7 +13,7 @@ class HairAppointment(models.Model):
     # Datos obtenidos desde la Reserva de Recurso (resource.booking)
     partner_id = fields.Many2one(string='Customer', related='booking_id.partner_id', store=True, readonly=True)
     resource_ids = fields.Many2many(string='Resources / Stylists',
-                                    related='booking_id.combination_id.resource_ids', readonly=True)
+                                        related='booking_id.combination_id.resource_ids', readonly=True)
     state_booking = fields.Selection(string='Booking State', related='booking_id.state', store=True, readonly=True)
 
     # Enlace indirecto al Evento de Calendario (que resource.booking crea automáticamente)

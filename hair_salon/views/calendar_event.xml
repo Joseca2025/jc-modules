@@ -1,0 +1,32 @@
+<odoo>
+    <record id="view_calendar_event_form_inherit_hair" model="ir.ui.view">
+        <field name="name">calendar.event.form.inherit.hair</field>
+        <field name="model">calendar.event</field>
+        <field name="inherit_id" ref="calendar.view_calendar_event_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//sheet" position="before">
+                <header>
+                    <!-- Barra visual de estados arriba en el calendario -->
+                    <field name="booking_state"
+                           widget="statusbar"
+                           statusbar_visible="pending,planned,confirmed,in_progress,completed,canceled"/>
+
+                    <!-- Botones de acción -->
+                    <button name="action_calendar_start"
+                            string="Iniciar Atención"
+                            type="object"
+                            class="oe_highlight"
+                            invisible="booking_state != 'confirmed'"/>
+
+                    <button name="action_calendar_complete"
+                            string="Finalizar Atención"
+                            type="object"
+                            class="oe_highlight"
+                            invisible="booking_state != 'in_progress'"/>
+                </header>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

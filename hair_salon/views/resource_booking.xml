@@ -26,7 +26,21 @@
                         class="oe_highlight"
                         invisible="state != 'in_progress'"/>
             </xpath>
+            <xpath expr="//button[@name='action_unschedule']" position="attributes">
+                <attribute name="invisible">state == 'completed'</attribute>
+            </xpath>
 
+            <!-- Cancelar (sin reunión) -->
+            <xpath expr="(//button[@name='action_cancel'])[1]" position="attributes">
+                <attribute name="invisible">not is_modifiable or state in ('canceled', 'completed') or meeting_id
+                </attribute>
+            </xpath>
+
+            <!-- Cancelar (con reunión) -->
+            <xpath expr="(//button[@name='action_cancel'])[2]" position="attributes">
+                <attribute name="invisible">not is_modifiable or state in ('canceled', 'completed') or not meeting_id
+                </attribute>
+            </xpath>
         </field>
     </record>
 </odoo>

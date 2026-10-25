@@ -1,4 +1,4 @@
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 
 class CalendarEvent(models.Model):
     _inherit = 'calendar.event'
@@ -28,18 +28,19 @@ class CalendarEvent(models.Model):
         for event in self:
             for booking in event.resource_booking_ids:
                 booking.action_progress()
-        # Forzamos la recarga de la vista actual para que el botón desaparezca y el statusbar avance
-        return {
-            'type': 'ir.actions.client',
-            'tag': 'reload',
-        }
 
     def action_calendar_complete(self):
+        # Hora actual convertida a la zona horaria del usuario
+        now = fields.Datetime.context_timestamp(self, fields.Datetime.now())
+        hora = now.strftime('%H:%M')
+        fecha = now.strftime('%d/%m/%Y')
+
         for event in self:
             for booking in event.resource_booking_ids:
                 booking.action_complete()
-        # Forzamos la recarga de la vista actual
-        return {
-            'type': 'ir.actions.client',
-            'tag': 'reload',
-        }
+                booking.message_post(
+                    body=_("Se finalizó el corte el %(fecha)s a las %(hora)s.", fecha=fecha, hora=hora),
+                )
+            event.message_post(
+                body=_("Se finalizó el corte el %(fecha)s a las %(hora)s.", fecha=fecha, hora=hora),
+            )

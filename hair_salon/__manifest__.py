@@ -13,7 +13,7 @@
 
 
     'category': 'Services',
-    'version': '18.0.0.3',
+    'version': '18.0.0.4',
 
     # any module necessary for this one to work correctly
     'depends': ['base','calendar','resource_booking','sale','sale_management','hr'],

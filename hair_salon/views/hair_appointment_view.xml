@@ -3,7 +3,8 @@
         <field name="name">hair.appointment.form</field>
         <field name="model">hair.appointment</field>
         <field name="arch" type="xml">
-            <form>
+            <!-- Las citas nacen desde la reserva, no se crean a mano -->
+            <form create="false">
                 <sheet>
                     <group>
                         <group>
@@ -39,7 +40,7 @@
         <field name="name">hair.appointment.list</field>
         <field name="model">hair.appointment</field>
         <field name="arch" type="xml">
-            <list string="Citas de Peluquería" default_order="id desc">
+            <list string="Citas de Peluquería" default_order="id desc" create="false">
                 <field name="partner_id" string="Cliente"/>
                 <field name="resource_ids" string="Recursos / Estilistas" widget="many2many_tags" optional="hide"/>
                 <field name="calendar_event_name" string="Evento"/>

@@ -10,13 +10,14 @@ class CalendarEvent(models.Model):
         ('in_progress', 'En Proceso'),
         ('completed', 'Finalizado'),
         ('canceled', 'Cancelado'),
-    ], string='Estado de Reserva', compute='_compute_booking_state', inverse='_inverse_booking_state')
+    ], string='Estado de Reserva', compute='_compute_booking_state', inverse='_inverse_booking_state',
+        compute_sudo=True)
 
     @api.depends('resource_booking_ids', 'resource_booking_ids.state')
     def _compute_booking_state(self):
         for event in self:
             booking = event.resource_booking_ids[:1]
-            event.booking_state = booking.state if booking else 'pending'
+            event.booking_state = booking.state if booking else False
 
     def _inverse_booking_state(self):
         """Permite que si el statusbar interactúa, traspase el cambio a la reserva"""

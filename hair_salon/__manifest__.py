@@ -14,6 +14,7 @@
 
     'category': 'Services',
     'version': '18.0.0.4',
+    'license': 'AGPL-3',
 
     # any module necessary for this one to work correctly
     'depends': ['base','calendar','resource_booking','sale','sale_management','hr'],
@@ -25,10 +26,6 @@
         'views/menu_hair_salon.xml',
         'views/resource_booking.xml',
         'views/calendar_event.xml',
-    ],
-    # only loaded in demonstration mode
-    'demo': [
-        'demo/demo.xml',
     ],
 }
 

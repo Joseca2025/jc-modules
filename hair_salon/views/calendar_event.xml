@@ -6,11 +6,12 @@
         <field name="arch" type="xml">
 
             <xpath expr="//sheet" position="before">
-                <header>
+                <!-- Solo se muestra en eventos generados por una reserva -->
+                <header invisible="not booking_state">
                     <!-- Barra visual de estados arriba en el calendario -->
                     <field name="booking_state"
                            widget="statusbar"
-                           statusbar_visible="pending,planned,confirmed,in_progress,completed,canceled"/>
+                           statusbar_visible="pending,scheduled,confirmed,in_progress,completed,canceled"/>
 
                     <!-- Botones de acción -->
                     <button name="action_calendar_start"

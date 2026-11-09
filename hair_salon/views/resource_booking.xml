@@ -9,7 +9,7 @@
             <xpath expr="//field[@name='state']" position="replace">
                 <field name="state"
                        widget="statusbar"
-                       statusbar_visible="pending,planned,confirmed,in_progress,completed,canceled"/>
+                       statusbar_visible="pending,scheduled,confirmed,in_progress,completed,canceled"/>
             </xpath>
 
             <!-- 2. Agregamos los botones en el header para interactuar con los estados -->
@@ -27,7 +27,7 @@
                         invisible="state != 'in_progress'"/>
             </xpath>
             <xpath expr="//button[@name='action_unschedule']" position="attributes">
-                <attribute name="invisible">state == 'completed'</attribute>
+                <attribute name="invisible">not is_modifiable or not meeting_id or state in ('in_progress', 'completed')</attribute>
             </xpath>
 
             <!-- Cancelar (sin reunión) -->

@@ -15,6 +15,7 @@
             id="menu_hair_salon_root"
             name="Hair Salon"
             web_icon="hair_salon,static/description/icon5.png"
+            groups="group_hair_stylist"
             sequence="10"
     />
 

@@ -8,23 +8,37 @@
             <xpath expr="//sheet" position="before">
                 <!-- Solo se muestra en eventos generados por una reserva -->
                 <header invisible="not booking_state">
-                    <!-- Barra visual de estados arriba en el calendario -->
                     <field name="booking_state"
                            widget="statusbar"
-                           statusbar_visible="pending,scheduled,confirmed,in_progress,completed,canceled"/>
+                           statusbar_visible="pending,scheduled,confirmed,arrived,in_progress,completed"/>
 
-                    <!-- Botones de acción -->
+                    <button name="action_calendar_arrive"
+                            string="Llegó"
+                            type="object"
+                            class="oe_highlight"
+                            groups="hair_salon.group_hair_receptionist"
+                            invisible="booking_state not in ('scheduled', 'confirmed')"/>
+
                     <button name="action_calendar_start"
                             string="Iniciar Atención"
                             type="object"
                             class="oe_highlight"
-                            invisible="booking_state != 'confirmed'"/>
+                            groups="hair_salon.group_hair_stylist"
+                            invisible="booking_state not in ('scheduled', 'confirmed', 'arrived')"/>
 
                     <button name="action_calendar_complete"
                             string="Finalizar Atención"
                             type="object"
                             class="oe_highlight"
+                            groups="hair_salon.group_hair_stylist"
                             invisible="booking_state != 'in_progress'"/>
+
+                    <button name="action_calendar_no_show"
+                            string="No asistió"
+                            type="object"
+                            confirm="¿Marcar que el cliente no asistió a la cita?"
+                            groups="hair_salon.group_hair_receptionist"
+                            invisible="booking_state not in ('scheduled', 'confirmed')"/>
                 </header>
             </xpath>
 

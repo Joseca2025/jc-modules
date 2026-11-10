@@ -1,11 +1,15 @@
-from odoo import fields, models
+from odoo import api, fields, models
 
 
 class HairAppointment(models.Model):
     _name = 'hair.appointment'
     _description = 'Hair Salon Appointment'
+    _sql_constraints = [
+        ('booking_unique', 'UNIQUE(booking_id)', 'Una reserva solo puede tener una cita.'),
+    ]
 
     name = fields.Char(string='Appointment', required=True)
+    appointment_start = fields.Datetime(string='Fecha de la cita', compute='_compute_appointment_start', store=True)
 
     # Enlace principal con la Reserva de Recurso
     booking_id = fields.Many2one('resource.booking', string='Resource Booking', required=True, ondelete='cascade')
@@ -33,3 +37,8 @@ class HairAppointment(models.Model):
                                            store=True, readonly=True)
     calendar_event_description = fields.Html(string='Calendar Event Description',
                                              related='calendar_event_id.description', store=True, readonly=True)
+
+    @api.depends('booking_id.start', 'booking_id.canceled_start')
+    def _compute_appointment_start(self):
+        for appointment in self:
+            appointment.appointment_start = appointment.booking_id.start or appointment.booking_id.canceled_start

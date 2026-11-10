@@ -5,41 +5,52 @@
         <field name="inherit_id" ref="resource_booking.resource_booking_view_form"/>
         <field name="arch" type="xml">
 
-            <!-- 1. Actualizamos la barra de estados para incluir los nuevos en orden -->
-            <xpath expr="//field[@name='state']" position="replace">
-                <field name="state"
-                       widget="statusbar"
-                       statusbar_visible="pending,scheduled,confirmed,in_progress,completed,canceled"/>
+            <xpath expr="//header/field[@name='state']" position="attributes">
+                <attribute name="statusbar_visible">pending,scheduled,confirmed,arrived,in_progress,completed</attribute>
             </xpath>
 
-            <!-- 2. Agregamos los botones en el header para interactuar con los estados -->
+            <!-- Desagendar y Cancelar ya se ocultan solos: is_modifiable es False en una atención iniciada -->
             <xpath expr="//header" position="inside">
+                <button name="action_arrive"
+                        string="Llegó"
+                        type="object"
+                        class="oe_highlight"
+                        groups="hair_salon.group_hair_receptionist"
+                        invisible="state not in ('scheduled', 'confirmed')"/>
+
                 <button name="action_progress"
                         string="Iniciar Atención"
                         type="object"
                         class="oe_highlight"
-                        invisible="state != 'confirmed'"/>
+                        invisible="state not in ('scheduled', 'confirmed', 'arrived')"/>
 
                 <button name="action_complete"
                         string="Finalizar Atención"
                         type="object"
                         class="oe_highlight"
                         invisible="state != 'in_progress'"/>
-            </xpath>
-            <xpath expr="//button[@name='action_unschedule']" position="attributes">
-                <attribute name="invisible">not is_modifiable or not meeting_id or state in ('in_progress', 'completed')</attribute>
+
+                <button name="action_no_show"
+                        string="No asistió"
+                        type="object"
+                        confirm="¿Marcar que el cliente no asistió a la cita?"
+                        groups="hair_salon.group_hair_receptionist"
+                        invisible="state not in ('scheduled', 'confirmed')"/>
+
+                <button name="action_reopen"
+                        string="Reabrir"
+                        type="object"
+                        confirm="La reserva vuelve a la agenda y se borran las horas reales registradas. ¿Continuar?"
+                        groups="hair_salon.group_hair_manager"
+                        invisible="state not in ('arrived', 'in_progress', 'completed', 'no_show')"/>
             </xpath>
 
-            <!-- Cancelar (sin reunión) -->
-            <xpath expr="(//button[@name='action_cancel'])[1]" position="attributes">
-                <attribute name="invisible">not is_modifiable or state in ('canceled', 'completed') or meeting_id
-                </attribute>
-            </xpath>
-
-            <!-- Cancelar (con reunión) -->
-            <xpath expr="(//button[@name='action_cancel'])[2]" position="attributes">
-                <attribute name="invisible">not is_modifiable or state in ('canceled', 'completed') or not meeting_id
-                </attribute>
+            <xpath expr="//group[@name='meeting']" position="inside">
+                <field name="arrival_datetime" invisible="not arrival_datetime"/>
+                <field name="service_start_datetime" invisible="not service_start_datetime"/>
+                <field name="service_end_datetime" invisible="not service_end_datetime"/>
+                <field name="canceled_start" invisible="not canceled_start"/>
+                <field name="canceled_datetime" invisible="not canceled_datetime"/>
             </xpath>
         </field>
     </record>

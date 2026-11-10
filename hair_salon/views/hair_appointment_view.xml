@@ -17,6 +17,7 @@
                             <field name="calendar_event_name" string="Nombre del evento"/>
                             <field name="calendar_event_organizer" string="Organizador"/>
                             <field name="state_booking" string="Estado de la Cita"/>
+                            <field name="appointment_start"/>
                         </group>
                     </group>
                     <group string="Detalles del evento">
@@ -44,11 +45,11 @@
                 <field name="partner_id" string="Cliente"/>
                 <field name="resource_ids" string="Recursos / Estilistas" widget="many2many_tags" optional="hide"/>
                 <field name="calendar_event_name" string="Evento"/>
-                <field name="calendar_event_date_start" string="Fecha y hora de inicio"/>
+                <field name="appointment_start"/>
                 <field name="calendar_event_date_end" string="Fecha y hora de fin" optional="hide"/>
                 <field name="calendar_event_duration" string="Duración" optional="hide"/>
                 <field name="calendar_event_organizer" string="Organizador" optional="hide"/>
-                <field name="state_booking" string="Estado de la Cita" optional="hide"/>
+                <field name="state_booking" string="Estado de la Cita"/>
             </list>
         </field>
     </record>

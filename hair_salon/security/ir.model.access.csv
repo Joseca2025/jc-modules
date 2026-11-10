@@ -1,2 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_hair_appointment_user,hair.appointment.user,model_hair_appointment,base.group_user,1,1,1,1
+access_hair_appointment_stylist,hair.appointment.stylist,model_hair_appointment,group_hair_stylist,1,0,0,0
+access_hair_appointment_receptionist,hair.appointment.receptionist,model_hair_appointment,group_hair_receptionist,1,1,0,0
+access_hair_appointment_manager,hair.appointment.manager,model_hair_appointment,group_hair_manager,1,1,1,1

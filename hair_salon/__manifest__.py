@@ -13,7 +13,7 @@
 
 
     'category': 'Services',
-    'version': '18.0.0.4',
+    'version': '18.0.0.5',
     'license': 'AGPL-3',
 
     # any module necessary for this one to work correctly
@@ -21,6 +21,7 @@
 
     # always loaded
     'data': [
+        'security/hair_salon_security.xml',
         'security/ir.model.access.csv',
         'views/hair_appointment_view.xml',
         'views/menu_hair_salon.xml',
